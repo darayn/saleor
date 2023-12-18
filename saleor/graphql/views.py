@@ -195,6 +195,8 @@ class GraphQLView(View):
             with observability.report_api_call(request) as api_call:
                 api_call.response = response
                 api_call.report()
+            response["Access-Control-Allow-Origin"] = "http://localhost:9000/"
+            response["Access-Control-Allow-Credentials"] = "true"
             return response
 
     def get_response(
